@@ -49,8 +49,10 @@ git add hello.sh
 ```
 git commit -m "added hello.sh which prints hello"
 ```
-- Git push —set-upstream origin f-addHelloScript
-
+- Git push 
+```
+git push —set-upstream origin f-addHelloScript
+```
 - Create pull request
 - Merge
 - Checkout to the master branch
