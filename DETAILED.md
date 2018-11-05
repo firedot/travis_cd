@@ -71,11 +71,16 @@ git pull origin master
 
 ```
 git checkout -b "ImplementTravis"
+```
+
 
 - Create ```.travis.yml```
-- Implement travis configuration with a test that always passes
 
 ```
+touch .travis.yml
+```
+
+- Implement travis configuration with a test that always passes
 
 ```
 sudo: required
