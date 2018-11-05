@@ -1,26 +1,26 @@
 Travis CD setup
 
-1. Create repo
-2. Clone
+- Create repo
+- Clone
 
 ```
 git clone https://github.com/firedot/travis_cd.git
 ```
 
-3. Go in the repo dir
+- Go in the repo dir
 
 ```
 cd travis_cd/
 ```
 
 
-4. Create new Branch ```f-addHelloScript```
+- Create new Branch ```f-addHelloScript```
 
 ```
 git checkout -b "f-addHelloScript"
 ```
 
-5. Create (or copy) ```hello.sh```
+- Create (or copy) ```hello.sh```
 
 ```
 cp ../bashScript/hello.sh .
@@ -33,45 +33,45 @@ or ```touch hello.sh``` and paste the content below
 echo "hello"
 ```
 
-6. Check if ```hello.sh``` has execution permissions
+- Check if ```hello.sh``` has execution permissions
 
 ```
 ls -la
 ```
-7. Git add ```hello.sh```
+- Git add ```hello.sh```
 
 ```
 git add hello.sh 
 ```
 
-8. Git commit -m " -m "added hello.sh which prints hello”
+- Git commit -m " -m "added hello.sh which prints hello”
 
 ```
 git commit -m "added hello.sh which prints hello"
 ```
-9. Git push —set-upstream origin f-addHelloScript
+- Git push —set-upstream origin f-addHelloScript
 
-10. Create pull request
-11. Merge
-12. Checkout to the master branch
+- Create pull request
+- Merge
+- Checkout to the master branch
 
 ```
 git checkout master
 ```
 
-13. Pull the changes from Github into the master branch
+- Pull the changes from Github into the master branch
 
 ```
 git pull origin master
 ```
-14. Enable repo on Travis
-15. Create new branch ```ImplementTravis```
+- Enable repo on Travis
+- Create new branch ```ImplementTravis```
 
 ```
 git checkout -b "ImplementTravis"
 
-16. Create ```.travis.yml```
-17. Implement travis configuration with a test that always passes
+- Create ```.travis.yml```
+- Implement travis configuration with a test that always passes
 
 ```
 
@@ -80,54 +80,148 @@ sudo: required
 script:
 - exit 0
 ```
-18. Git add ```.travis.yml```
+- Git add ```.travis.yml```
 
 ```
 git add .travis.yml
 ```
 
-19. Git commit
-20. Git push
-21. Create pull request
-22. Merge
-23. Checkout to the master branch
-24. Pull the changes from GitHub into the master branch
-25. Create new branch ```f-addTravisTests```
-26. Create file ```test.sh```
-27. Check if ```test.sh``` has execution permissions
-28. Add a test that check the output from ```hello.sh```
+- Git commit
+
+```
+git commit -m "Implemented Travis"
+```
+
+- Git push
+
+```
+git push --set-upstream origin ImplementTravis
+```
+
+- Create pull request
+- Merge
+-  Checkout to the master branch
+
+```
+git checkout master
+```
+
+- Pull the changes from GitHub into the master branch
+
+```
+git pull origin master
+```
+
+- Create new branch ```f-addTravisTests```
+
+```
+git checkout -b "f-addTravisTests"
+```
+
+- Create file ```test.sh```
+
+```
+touch test.sh
+```
+
+- Check if ```test.sh``` has execution permissions
+
+```
+ls -la test.sh
+```
+
+- Add a test that check the output from ```hello.sh```
 
 ```
 #!/usr/bin/env bash
- output=$(bash -x hello.sh)
+ output=$(bash hello.sh)
  if [ "${output}" == "hello" ]; then
-  echo Test pass
+  echo "GOOD: Test pass"
 else
-  echo Test fails
+  echo "BAD: Test failed"
   exit 1
 fi
 ```
 
-29. Git add test.sh
-30. Git commit 
-31. Git push
-32. Create pull request
-33. Merge
-34. Pull changes from Github into the master branch
-35. Create new branch ```addTestToTravis```
-36. Edit ```.travis.yml``` to use the tests from ```test.sh```
+- Git add ```test.sh```
+
+```
+git add test.sh
+
+```
+
+- Git commit 
+
+```
+git commit -m "added test script to be used by Travis"
+```
+- Git push
+
+```
+git push --set-upstream origin f-addTravisTests
+```
+
+- Create pull request
+- Merge
+
+- Checkout to master
+```
+git checkout master
+```
+- Pull changes from Github into the master branch
+```
+git pull origin master
+```
+
+- Create new branch ```addTestToTravis```
+
+```
+git checkout -b "addTestToTravis"
+```
+
+- Edit ```.travis.yml``` to use the tests from ```test.sh```
+
 ```
 sudo: required
 script:
 - bash test.sh
 ```
 
-37. Git add ```.travis.yml```
-38. Git commit
-39. Git push
-40. Pull changes from Github into master branch
-41. Create new branch ```updateTravis```
-42. Edit ```.travis.yml``` to implement releases to GitHub
+-  Git add ```.travis.yml```
+
+```
+git add .travis.yml
+```
+
+- Git commit
+
+```
+git commit -m "Updated travis to use test.sh"
+```
+
+- Git push
+
+```
+git push --set-upstream origin addTestToTravis
+```
+- Checkout to master
+
+```
+git checkout master
+```
+
+-  Pull changes from Github into master branch
+
+```
+git pull origin master
+```
+
+- Create new branch ```updateTravis```
+```
+git checkout -b "updateTravis"
+```
+
+- Edit ```.travis.yml``` to implement releases to GitHub
 
 ```
 sudo: required
@@ -142,13 +236,48 @@ deploy:
     repo: firedot/travis_cd
 ```
 
-43. Git add ```.travis.yml```
-44. Git commit 
-45. Git push
-46. Pull the changes from GitHub to master
-47. create new branch ```addDETAILED.md```
-48. git add thisfile (DETAILED.md)
-49. Git commit
-50. Git push 
-51. Create pull request
-52. Merge. 
+- Git add ```.travis.yml```
+
+```
+git add .travis.yml
+```
+
+- Git commit 
+```
+git commit -m "Updated .travis.yml to handle releases"
+```
+
+- Git push
+```
+git push --set-upstream origin updateTravis
+```
+- Checkout to master
+
+```
+git checkout master
+```
+- Pull the changes from GitHub to master
+
+```
+git pull origin master
+```
+
+- create new branch ```addDETAILED.md```
+
+```
+git checkout -b "addDETAILED.md
+```
+- git add thisfile (DETAILED.md)
+```
+git add DETAILED.md
+```
+- Git commit
+```
+git commit -m "added DETAILED.md"
+```
+- Git push
+```
+git push origin addDETAILED.md
+```
+- Create pull request
+- Merge. 
