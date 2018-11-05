@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
- output=$(bash -x hello.sh)
+ output=$(bash hello.sh)
  if [ "${output}" == "hello" ]; then
   echo Test pass
 else
