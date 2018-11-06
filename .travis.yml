@@ -8,5 +8,5 @@ deploy:
   file: hello.sh
   skip_cleanup: true
   on:
-    tags: true
     repo: firedot/travis_cd
+    tags: true
